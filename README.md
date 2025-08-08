@@ -48,7 +48,7 @@ See the header files such as:
 ```bash
 git clone https://github.com/seifelabed21/BankSystem.git
 cd BankSystem
-g++ -std=c++17 -o BankApp main.cpp
+g++ -std=c++17 -o BankApp Main.cpp
 ./BankApp
 ```
 
