@@ -39,10 +39,10 @@ private:
 
     }
 
-    string _PrepareLogInRecord( string Seperator = "#//#")
+    string _PrepareLogInRecord(string Seperator = "#//#")
     {
         string LoginRecord = "";
-        LoginRecord += clsDate::GetSystemDateTimeString() + Seperator;
+        LoginRecord += clsDate::GetSystemDate().DateToString() + Seperator;
         LoginRecord += UserName + Seperator;
         //here we encypt store the encrypted Password not the real one.
         LoginRecord += clsUtil::EncryptText(Password) + Seperator;
@@ -249,7 +249,7 @@ public:
     }
     __declspec(property(get = GetPassword, put = SetPassword)) string Password;
 
-   
+
 
     void SetPermissions(int Permissions)
     {
@@ -290,7 +290,7 @@ public:
     static clsUser Find(string UserName, string Password)
     {
 
-        
+
 
         fstream MyFile;
         MyFile.open("Users.txt", ios::in);//read Mode
@@ -412,7 +412,7 @@ public:
     }
 
 
-     void RegisterLogIn()
+    void RegisterLogIn()
     {
 
         string stDataLine = _PrepareLogInRecord();
@@ -430,36 +430,36 @@ public:
 
     }
 
-     static  vector <stLoginRegisterRecord> GetLoginRegisterList()
-     {
-         vector <stLoginRegisterRecord> vLoginRegisterRecord;
+    static  vector <stLoginRegisterRecord> GetLoginRegisterList()
+    {
+        vector <stLoginRegisterRecord> vLoginRegisterRecord;
 
-         fstream MyFile;
-         MyFile.open("LoginRegister.txt", ios::in);//read Mode
+        fstream MyFile;
+        MyFile.open("LoginRegister.txt", ios::in);//read Mode
 
-         if (MyFile.is_open())
-         {
+        if (MyFile.is_open())
+        {
 
-             string Line;
+            string Line;
 
-             stLoginRegisterRecord LoginRegisterRecord;
+            stLoginRegisterRecord LoginRegisterRecord;
 
-             while (getline(MyFile, Line))
-             {
+            while (getline(MyFile, Line))
+            {
 
-                 LoginRegisterRecord = _ConvertLoginRegisterLineToRecord(Line);
+                LoginRegisterRecord = _ConvertLoginRegisterLineToRecord(Line);
 
-                 vLoginRegisterRecord.push_back(LoginRegisterRecord);
+                vLoginRegisterRecord.push_back(LoginRegisterRecord);
 
-             }
+            }
 
-             MyFile.close();
+            MyFile.close();
 
-         }
+        }
 
-         return vLoginRegisterRecord;
+        return vLoginRegisterRecord;
 
-     }
+    }
 
 };
 
